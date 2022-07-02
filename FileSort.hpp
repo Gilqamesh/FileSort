@@ -45,10 +45,6 @@ private:
         ~Exception() throw();
     };
 
-    // TODO(david): seperation of concerns
-    Word wordRead(FileHandle fileHandle, unsigned int wordIndex);
-    void wordWrite(FileHandle fileHandle, Word &word);
-
     // File sorting algorithm
     void mergeSort(int numberOfChunks, FileHandle outFileHandle);
     void mergeSort(int start, int end, FileHandle outFileHandle);

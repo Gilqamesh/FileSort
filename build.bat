@@ -1,6 +1,6 @@
 @echo off
 
-set CompilerFlags= -FC -Zi -WX -W4 -nologo -EHa -wd4100 -wd4189
+set CompilerFlags= -FC -Zi -WX -W4 -nologo -EHa -wd4100 -wd4189 -wd4702 /std:c11
 set LinkerFlags=
 
 IF NOT EXIST ..\..\build mkdir ..\..\build
