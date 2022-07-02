@@ -11,7 +11,8 @@ FileSort::FileSort(int maxFileSizeBytes, int numberOfLinesPerSegment, int lineSi
       _lineSizeBytes(lineSizeBytes),
       _fileManager(1000, "HtANm0ECUCjVFVSPRWT7_"),
       _chunkA(_numberOfLinesPerSegment, _lineSizeBytes),
-      _chunkB(_numberOfLinesPerSegment, _lineSizeBytes)
+      _chunkB(_numberOfLinesPerSegment, _lineSizeBytes),
+      _chunkC(_numberOfLinesPerSegment, _lineSizeBytes)
 {
 }
 
@@ -84,7 +85,6 @@ void FileSort::mergeSort(int start, int end, FileHandle outFileHandle)
 }
 
 // TODO(david): replace seek with close perhaps?
-/*
 void FileSort::mergeComb(int start, int mid, int end, FileHandle outFileHandle)
 {
     int leftChunkIndex = start;
@@ -99,13 +99,14 @@ void FileSort::mergeComb(int start, int mid, int end, FileHandle outFileHandle)
 
     sw.set();
     int numberOfChunks = end - start;
-    size_t numberOfIterations = numberOfChunks * _numberOfLinesPerSegment;
-    for (size_t i = 0; i < numberOfIterations; ++i)
+    size_t numberOfWords = numberOfChunks * _numberOfLinesPerSegment;
+    for (size_t curWordIndex = 0; curWordIndex < numberOfWords; ++curWordIndex)
     {
         if (leftChunkIndex < mid && leftWordIndex == 0)
         {
             leftFileHandle = _fileManager.openTmp(leftChunkIndex);
             _fileManager.read(leftFileHandle, _chunkA.data(), _chunkA.size());
+            _chunkA.sort();
             _fileManager.seek(leftFileHandle, 0);
             leftWord = _chunkA.getWord(leftWordIndex++);
         }
@@ -113,13 +114,15 @@ void FileSort::mergeComb(int start, int mid, int end, FileHandle outFileHandle)
         {
             rightFileHandle = _fileManager.openTmp(rightChunkIndex);
             _fileManager.read(rightFileHandle, _chunkB.data(), _chunkB.size());
+            _chunkB.sort();
             _fileManager.seek(rightFileHandle, 0);
             rightWord = _chunkB.getWord(rightWordIndex++);
         }
         
         if (leftChunkIndex < mid && (rightChunkIndex >= end || leftWord < rightWord))
         {
-            _fileManager.write(outFileHandle, (void *)leftWord.data(), leftWord.size());
+            _chunkC.addWord(leftWord);
+            //_fileManager.write(outFileHandle, (void *)leftWord.data(), leftWord.size());
             if (leftWordIndex == _numberOfLinesPerSegment)
             {
                 ++leftChunkIndex;
@@ -132,7 +135,8 @@ void FileSort::mergeComb(int start, int mid, int end, FileHandle outFileHandle)
         }
         else
         {
-            _fileManager.write(outFileHandle, (void *)rightWord.data(), rightWord.size());
+            _chunkC.addWord(rightWord);
+            //_fileManager.write(outFileHandle, (void *)rightWord.data(), rightWord.size());
             if (rightWordIndex == _numberOfLinesPerSegment)
             {
                 ++rightChunkIndex;
@@ -143,69 +147,14 @@ void FileSort::mergeComb(int start, int mid, int end, FileHandle outFileHandle)
                 rightWord = _chunkB.getWord(rightWordIndex++);
             }
         }
+        if (_chunkC.sizeWords() == _numberOfLinesPerSegment)
+        {
+            _fileManager.write(outFileHandle, _chunkC.data(), _chunkC.size());
+            _chunkC.reset();
+        }
     }
     sw.set();
     sw.reset();
-}*/
-
-void FileSort::mergeComb(int start, int mid, int end, FileHandle outFileHandle)
-{
-    int leftChunkIndex = start;
-    int rightChunkIndex = mid;
-    int leftWordIndex = 0;
-    int rightWordIndex = 0;
-    FileHandle leftFileHandle = NULL;
-    FileHandle rightFileHandle = NULL;
-    string leftWord(_lineSizeBytes, '\0');
-    string rightWord(_lineSizeBytes, '\0');
-    _fileManager.seek(outFileHandle, start * _lineSizeBytes);
-
-    size_t numberOfIterations = (end - start) * _numberOfLinesPerSegment;
-    for (size_t i = 0; i < numberOfIterations; ++i)
-    {
-        if (leftChunkIndex < mid && leftWordIndex == 0)
-        {
-            leftFileHandle = _fileManager.openTmp(leftChunkIndex);
-            _fileManager.read(leftFileHandle, &leftWord[0], leftWord.size());
-            ++leftWordIndex;
-        }
-        if (rightChunkIndex < end && rightWordIndex == 0)
-        {
-            rightFileHandle = _fileManager.openTmp(rightChunkIndex);
-            _fileManager.read(rightFileHandle, &rightWord[0], rightWord.size());
-            ++leftWordIndex;
-        }
-        if (leftChunkIndex < mid && (rightChunkIndex >= end || leftWord < rightWord))
-        {
-            _fileManager.write(outFileHandle, &leftWord[0], leftWord.size());
-            if (leftWordIndex == _numberOfLinesPerSegment)
-            {
-                ++leftChunkIndex;
-                leftWordIndex = 0;
-                _fileManager.seek(leftFileHandle, 0);
-            }
-            else
-            {
-                _fileManager.read(leftFileHandle, &leftWord[0], leftWord.size());
-                ++leftWordIndex;
-            }
-        }
-        else
-        {
-            _fileManager.write(outFileHandle, &rightWord[0], rightWord.size());
-            if (rightWordIndex == _numberOfLinesPerSegment)
-            {
-                ++rightChunkIndex;
-                rightWordIndex = 0;
-                _fileManager.seek(rightFileHandle, 0);
-            }
-            else
-            {
-                _fileManager.read(rightFileHandle, &rightWord[0], rightWord.size());
-                ++rightWordIndex;
-            }
-        }
-    }
 }
 
 void FileSort::mergeCopy(int start, int end, FileHandle outFileHandle)

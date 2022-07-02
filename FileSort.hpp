@@ -31,6 +31,7 @@ class FileSort
     FileManager _fileManager;
     FileChunk _chunkA;
     FileChunk _chunkB;
+    FileChunk _chunkC;
     stopwatch sw;
 
 public:

@@ -6,16 +6,24 @@
 
 using namespace std;
 
-class FileChunk : public vector<char>
+class FileChunk
 {
-    int _numberOfLines;
-    int _lineSizeBytes;
+    int _numberOfWords;
+    int _wordSize;
+    int _wordIndex;
+    vector<char> _data;
     // TODO(david): store indices to the starting position in the buffer instead
+    vector<pair<int, int>> _sortedIndices;
     vector<string> _sortedWords;
 public:
-    FileChunk(int numberOfLines, int lineSizeBytes);
+    FileChunk(int numberOfWords, int wordSize);
     void sort();
     string getWord(unsigned int index);
+    void addWord(const string& word);
+    size_t sizeWords();
+    void reset();
+    void *data();
+    size_t size();
 };
 
 #endif
