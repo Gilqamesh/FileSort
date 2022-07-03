@@ -8,9 +8,17 @@ C:/Program Files/CMake/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake
 C:/Program Files/CMake/share/cmake-3.22/Modules/CMakeRCInformation.cmake
 C:/Program Files/CMake/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake
 C:/Program Files/CMake/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/CheckCSourceCompiles.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/CheckIncludeFile.c.in
+C:/Program Files/CMake/share/cmake-3.22/Modules/CheckIncludeFile.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/CheckLibraryExists.cmake
 C:/Program Files/CMake/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake
 C:/Program Files/CMake/share/cmake-3.22/Modules/Compiler/MSVC-C.cmake
 C:/Program Files/CMake/share/cmake-3.22/Modules/Compiler/MSVC-CXX.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/FindThreads.cmake
+C:/Program Files/CMake/share/cmake-3.22/Modules/Internal/CheckSourceCompiles.cmake
 C:/Program Files/CMake/share/cmake-3.22/Modules/Platform/Windows-MSVC-C.cmake
 C:/Program Files/CMake/share/cmake-3.22/Modules/Platform/Windows-MSVC-CXX.cmake
 C:/Program Files/CMake/share/cmake-3.22/Modules/Platform/Windows-MSVC.cmake

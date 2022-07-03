@@ -102,7 +102,7 @@ void FileManager::read(FileHandle fileHandle, void *buffer, size_t bytesToRead)
     if ((bytesRead = ::read(fileHandle, buffer, bytesToRead)) == -1)
 #endif
         throw Exception("Something went wrong while reading the file.");
-    if ((int)bytesRead != bytesToRead)
+    if (bytesRead != (int)bytesToRead)
         throw Exception("Unexpected bytes read from file, expected to read: " + to_string(bytesToRead) + ", but read: " + to_string(bytesRead));
 }
 
@@ -116,7 +116,7 @@ void FileManager::write(FileHandle fileHandle, void *buffer, size_t bytesToWrite
     if ((bytesWritten = ::write(fileHandle, buffer, bytesToWrite)) == -1)
 #endif
         throw Exception("Something went wrong while writing the file.");
-    if ((int)bytesWritten != bytesToWrite)
+    if (bytesWritten != (int)bytesToWrite)
         throw Exception("Unexpected bytes written to file, expected to write: " + to_string(bytesToWrite) + ", but written " + to_string(bytesWritten));
 }
 

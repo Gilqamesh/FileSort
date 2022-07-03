@@ -109,7 +109,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=SortFile
+CMAKE_PROJECT_NAME:STATIC=FileSort
 
 //RC compiler
 CMAKE_RC_COMPILER:FILEPATH=rc
@@ -181,6 +181,15 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 // during the make.  This is useful for debugging only. With Visual
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
+
+//Value Computed by CMake
+FileSort_BINARY_DIR:STATIC=G:/code/XMCyber/Windows
+
+//Value Computed by CMake
+FileSort_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+FileSort_SOURCE_DIR:STATIC=G:/code/XMCyber
 
 //Value Computed by CMake
 SortFile_BINARY_DIR:STATIC=G:/code/XMCyber/Windows
@@ -258,6 +267,8 @@ CMAKE_GENERATOR_INSTANCE:INTERNAL=C:/Program Files (x86)/Microsoft Visual Studio
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
+//Have include pthread.h
+CMAKE_HAVE_PTHREAD_H:INTERNAL=
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=G:/code/XMCyber
@@ -322,4 +333,6 @@ CMAKE_STATIC_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Details about finding Threads
+FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 

@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named SortFile
+# Target rules for targets named FileSort
 
 # Build rule for target.
-SortFile: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 SortFile
-.PHONY : SortFile
+FileSort: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 FileSort
+.PHONY : FileSort
 
 # fast build rule for target.
-SortFile/fast:
-	$(MAKE) -f CMakeFiles/SortFile.dir/build.make CMakeFiles/SortFile.dir/build
-.PHONY : SortFile/fast
+FileSort/fast:
+	$(MAKE) -f CMakeFiles/FileSort.dir/build.make CMakeFiles/FileSort.dir/build
+.PHONY : FileSort/fast
 
 FileManager.o: FileManager.cpp.o
 
@@ -129,7 +129,7 @@ FileManager.o: FileManager.cpp.o
 
 # target to build an object file
 FileManager.cpp.o:
-	$(MAKE) -f CMakeFiles/SortFile.dir/build.make CMakeFiles/SortFile.dir/FileManager.cpp.o
+	$(MAKE) -f CMakeFiles/FileSort.dir/build.make CMakeFiles/FileSort.dir/FileManager.cpp.o
 .PHONY : FileManager.cpp.o
 
 FileManager.i: FileManager.cpp.i
@@ -138,7 +138,7 @@ FileManager.i: FileManager.cpp.i
 
 # target to preprocess a source file
 FileManager.cpp.i:
-	$(MAKE) -f CMakeFiles/SortFile.dir/build.make CMakeFiles/SortFile.dir/FileManager.cpp.i
+	$(MAKE) -f CMakeFiles/FileSort.dir/build.make CMakeFiles/FileSort.dir/FileManager.cpp.i
 .PHONY : FileManager.cpp.i
 
 FileManager.s: FileManager.cpp.s
@@ -147,7 +147,7 @@ FileManager.s: FileManager.cpp.s
 
 # target to generate assembly for a file
 FileManager.cpp.s:
-	$(MAKE) -f CMakeFiles/SortFile.dir/build.make CMakeFiles/SortFile.dir/FileManager.cpp.s
+	$(MAKE) -f CMakeFiles/FileSort.dir/build.make CMakeFiles/FileSort.dir/FileManager.cpp.s
 .PHONY : FileManager.cpp.s
 
 FileSort.o: FileSort.cpp.o
@@ -156,7 +156,7 @@ FileSort.o: FileSort.cpp.o
 
 # target to build an object file
 FileSort.cpp.o:
-	$(MAKE) -f CMakeFiles/SortFile.dir/build.make CMakeFiles/SortFile.dir/FileSort.cpp.o
+	$(MAKE) -f CMakeFiles/FileSort.dir/build.make CMakeFiles/FileSort.dir/FileSort.cpp.o
 .PHONY : FileSort.cpp.o
 
 FileSort.i: FileSort.cpp.i
@@ -165,7 +165,7 @@ FileSort.i: FileSort.cpp.i
 
 # target to preprocess a source file
 FileSort.cpp.i:
-	$(MAKE) -f CMakeFiles/SortFile.dir/build.make CMakeFiles/SortFile.dir/FileSort.cpp.i
+	$(MAKE) -f CMakeFiles/FileSort.dir/build.make CMakeFiles/FileSort.dir/FileSort.cpp.i
 .PHONY : FileSort.cpp.i
 
 FileSort.s: FileSort.cpp.s
@@ -174,7 +174,7 @@ FileSort.s: FileSort.cpp.s
 
 # target to generate assembly for a file
 FileSort.cpp.s:
-	$(MAKE) -f CMakeFiles/SortFile.dir/build.make CMakeFiles/SortFile.dir/FileSort.cpp.s
+	$(MAKE) -f CMakeFiles/FileSort.dir/build.make CMakeFiles/FileSort.dir/FileSort.cpp.s
 .PHONY : FileSort.cpp.s
 
 Word.o: Word.cpp.o
@@ -183,7 +183,7 @@ Word.o: Word.cpp.o
 
 # target to build an object file
 Word.cpp.o:
-	$(MAKE) -f CMakeFiles/SortFile.dir/build.make CMakeFiles/SortFile.dir/Word.cpp.o
+	$(MAKE) -f CMakeFiles/FileSort.dir/build.make CMakeFiles/FileSort.dir/Word.cpp.o
 .PHONY : Word.cpp.o
 
 Word.i: Word.cpp.i
@@ -192,7 +192,7 @@ Word.i: Word.cpp.i
 
 # target to preprocess a source file
 Word.cpp.i:
-	$(MAKE) -f CMakeFiles/SortFile.dir/build.make CMakeFiles/SortFile.dir/Word.cpp.i
+	$(MAKE) -f CMakeFiles/FileSort.dir/build.make CMakeFiles/FileSort.dir/Word.cpp.i
 .PHONY : Word.cpp.i
 
 Word.s: Word.cpp.s
@@ -201,7 +201,7 @@ Word.s: Word.cpp.s
 
 # target to generate assembly for a file
 Word.cpp.s:
-	$(MAKE) -f CMakeFiles/SortFile.dir/build.make CMakeFiles/SortFile.dir/Word.cpp.s
+	$(MAKE) -f CMakeFiles/FileSort.dir/build.make CMakeFiles/FileSort.dir/Word.cpp.s
 .PHONY : Word.cpp.s
 
 WordsArray.o: WordsArray.cpp.o
@@ -210,7 +210,7 @@ WordsArray.o: WordsArray.cpp.o
 
 # target to build an object file
 WordsArray.cpp.o:
-	$(MAKE) -f CMakeFiles/SortFile.dir/build.make CMakeFiles/SortFile.dir/WordsArray.cpp.o
+	$(MAKE) -f CMakeFiles/FileSort.dir/build.make CMakeFiles/FileSort.dir/WordsArray.cpp.o
 .PHONY : WordsArray.cpp.o
 
 WordsArray.i: WordsArray.cpp.i
@@ -219,7 +219,7 @@ WordsArray.i: WordsArray.cpp.i
 
 # target to preprocess a source file
 WordsArray.cpp.i:
-	$(MAKE) -f CMakeFiles/SortFile.dir/build.make CMakeFiles/SortFile.dir/WordsArray.cpp.i
+	$(MAKE) -f CMakeFiles/FileSort.dir/build.make CMakeFiles/FileSort.dir/WordsArray.cpp.i
 .PHONY : WordsArray.cpp.i
 
 WordsArray.s: WordsArray.cpp.s
@@ -228,7 +228,7 @@ WordsArray.s: WordsArray.cpp.s
 
 # target to generate assembly for a file
 WordsArray.cpp.s:
-	$(MAKE) -f CMakeFiles/SortFile.dir/build.make CMakeFiles/SortFile.dir/WordsArray.cpp.s
+	$(MAKE) -f CMakeFiles/FileSort.dir/build.make CMakeFiles/FileSort.dir/WordsArray.cpp.s
 .PHONY : WordsArray.cpp.s
 
 main.o: main.cpp.o
@@ -237,7 +237,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/SortFile.dir/build.make CMakeFiles/SortFile.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/FileSort.dir/build.make CMakeFiles/FileSort.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -246,7 +246,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/SortFile.dir/build.make CMakeFiles/SortFile.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/FileSort.dir/build.make CMakeFiles/FileSort.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -255,7 +255,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/SortFile.dir/build.make CMakeFiles/SortFile.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/FileSort.dir/build.make CMakeFiles/FileSort.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -266,7 +266,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... SortFile"
+	@echo "... FileSort"
 	@echo "... FileManager.o"
 	@echo "... FileManager.i"
 	@echo "... FileManager.s"

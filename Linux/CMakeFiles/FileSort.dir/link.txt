@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/FileSort.dir/WordsArray.cpp.o CMakeFiles/FileSort.dir/FileManager.cpp.o CMakeFiles/FileSort.dir/FileSort.cpp.o CMakeFiles/FileSort.dir/main.cpp.o CMakeFiles/FileSort.dir/Word.cpp.o  -o FileSort  -pthread 

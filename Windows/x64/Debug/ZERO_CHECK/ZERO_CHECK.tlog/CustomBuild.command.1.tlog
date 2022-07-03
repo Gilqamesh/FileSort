@@ -1,6 +1,6 @@
 ^G:\CODE\XMCYBER\WINDOWS\CMAKEFILES\AF3997453ED13D2BEF67C5D4478E6B30\GENERATE.STAMP.RULE
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SG:/code/XMCyber -BG:/code/XMCyber/Windows --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file G:/code/XMCyber/Windows/SortFile.sln
+"C:\Program Files\CMake\bin\cmake.exe" -SG:/code/XMCyber -BG:/code/XMCyber/Windows --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file G:/code/XMCyber/Windows/FileSort.sln
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone

@@ -53,7 +53,7 @@ CMAKE_BINARY_DIR = /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMC
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/SortFile.dir/all
+all: CMakeFiles/FileSort.dir/all
 
 .PHONY : all
 
@@ -63,36 +63,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/SortFile.dir/clean
+clean: CMakeFiles/FileSort.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/SortFile.dir
+# Target rules for target CMakeFiles/FileSort.dir
 
 # All Build rule for target.
-CMakeFiles/SortFile.dir/all:
-	$(MAKE) -f CMakeFiles/SortFile.dir/build.make CMakeFiles/SortFile.dir/depend
-	$(MAKE) -f CMakeFiles/SortFile.dir/build.make CMakeFiles/SortFile.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target SortFile"
-.PHONY : CMakeFiles/SortFile.dir/all
+CMakeFiles/FileSort.dir/all:
+	$(MAKE) -f CMakeFiles/FileSort.dir/build.make CMakeFiles/FileSort.dir/depend
+	$(MAKE) -f CMakeFiles/FileSort.dir/build.make CMakeFiles/FileSort.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target FileSort"
+.PHONY : CMakeFiles/FileSort.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/SortFile.dir/rule: cmake_check_build_system
+CMakeFiles/FileSort.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles 6
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/SortFile.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/FileSort.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles 0
-.PHONY : CMakeFiles/SortFile.dir/rule
+.PHONY : CMakeFiles/FileSort.dir/rule
 
 # Convenience name for target.
-SortFile: CMakeFiles/SortFile.dir/rule
+FileSort: CMakeFiles/FileSort.dir/rule
 
-.PHONY : SortFile
+.PHONY : FileSort
 
 # clean rule for target.
-CMakeFiles/SortFile.dir/clean:
-	$(MAKE) -f CMakeFiles/SortFile.dir/build.make CMakeFiles/SortFile.dir/clean
-.PHONY : CMakeFiles/SortFile.dir/clean
+CMakeFiles/FileSort.dir/clean:
+	$(MAKE) -f CMakeFiles/FileSort.dir/build.make CMakeFiles/FileSort.dir/clean
+.PHONY : CMakeFiles/FileSort.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

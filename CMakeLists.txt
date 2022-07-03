@@ -1,18 +1,21 @@
 cmake_minimum_required(VERSION 3.10)
 
 # set the project name
-project(SortFile)
+project(FileSort)
 
 # specify the C++ standard
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# add -DRELEASE for release compilation
 if (MSVC)
-    add_compile_options(-opt:ref -Oi -MT -FC -Zi -WX -W4 -nologo -EHa -wd4100 -wd4189 -wd4702 /std:c++14)
+    add_compile_options(-FC -Zi -WX -W4 -nologo -EHa -wd4100 -wd4189 -wd4702 /std:c++14)
 else()
-    add_compile_options(-Wall -Wextra -Werror -O3)
+    add_compile_options(-Wall -Wextra -Werror -pthread)
 endif()
 
 # add the executable
-add_executable(SortFile WordsArray.cpp FileManager.cpp FileSort.cpp main.cpp Word.cpp)
+add_executable(FileSort WordsArray.cpp FileManager.cpp FileSort.cpp main.cpp Word.cpp)
+
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+target_link_libraries(FileSort PRIVATE Threads::Threads)

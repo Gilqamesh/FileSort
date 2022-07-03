@@ -45,9 +45,9 @@ private:
 
     // File sorting algorithm
     void sort(int numberOfChunks, FileHandle outFileHandle, FileManager &fileManager);
-    void mergeSort(int start, int end, FileHandle outFileHandle, FileManager &fileManager, bool forwardMerge);
-    bool mergeIsSorted(int mid, FileHandle outFileHandle, FileManager &fileManager, bool forwardMerge);
-    void merge(int start, int mid, int end, FileHandle outFileHandle, FileManager &fileManager, bool forwardMerge);
+    void mergeSort(int start, int end, FileHandle outFileHandle, FileManager &fileManager, bool outToTmp);
+    bool mergeIsSorted(int mid, FileHandle outFileHandle, FileManager &fileManager, bool outToTmp);
+    void merge(int start, int mid, int end, FileHandle outFileHandle, FileManager &fileManager, bool outToTmp);
 };
 
 #endif
