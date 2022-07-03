@@ -51,6 +51,7 @@ void FileSort::Sort(const std::string &inFilePath, const std::string &outFilePat
 #endif
     LOG("Number of chunks: " << numberOfChunks);
 
+    sw.set();
     unique_ptr<WordsArray> chunk = make_unique<WordsArray>(_numberOfLinesPerSegment, _lineSizeBytes);
     if (numberOfChunks == 1)
     {
@@ -74,9 +75,12 @@ void FileSort::Sort(const std::string &inFilePath, const std::string &outFilePat
         FileHandle tmpFileHandle = fileManager.createTmp();
         fileManager.write(tmpFileHandle, chunk->data(), chunk->size());
         fileManager.write(outFileHandle, chunk->data(), chunk->size());
-        fileManager.seek(tmpFileHandle, 0);
+        fileManager.close(tmpFileHandle);
     }
+    sw.set();
     chunk.release();
+    sw.print();
+    sw.clear();
 
     sw.set();
     sort(numberOfChunks, outFileHandle, fileManager);
@@ -122,6 +126,7 @@ bool FileSort::mergeIsSorted(int mid, FileHandle outFileHandle, FileManager &fil
         FileHandle tmpFileHandle = fileManager.openTmp(mid - 1);
         fileManager.seek(tmpFileHandle, _chunkSize - _lineSizeBytes);
         fileManager.read(tmpFileHandle, firstHalfLast.data(), firstHalfLast.size());
+        fileManager.close(tmpFileHandle);
         outFileMutex.lock();
         fileManager.seek(outFileHandle, mid * _chunkSize);
         fileManager.read(outFileHandle, secondHalfFirst.data(), secondHalfFirst.size());
@@ -132,8 +137,8 @@ bool FileSort::mergeIsSorted(int mid, FileHandle outFileHandle, FileManager &fil
     else
     {
         FileHandle tmpFileHandle = fileManager.openTmp(mid);
-        fileManager.seek(tmpFileHandle, 0);
         fileManager.read(tmpFileHandle, secondHalfFirst.data(), secondHalfFirst.size());
+        fileManager.close(tmpFileHandle);
         outFileMutex.lock();
         fileManager.seek(outFileHandle, mid * _chunkSize - _lineSizeBytes);
         fileManager.read(outFileHandle, firstHalfLast.data(), firstHalfLast.size());
@@ -150,8 +155,6 @@ void FileSort::merge(int start, int mid, int end, FileHandle outFileHandle, File
     int rightChunkIndex = mid;
     int leftTmpWordIndex = 0;
     int rightTmpWordIndex = 0;
-    FileHandle leftTmpFileHandle = 0;
-    FileHandle rightTmpFileHandle = 0;
     WordsArray leftChunk(_numberOfLinesPerSegment, _lineSizeBytes);
     WordsArray rightChunk(_numberOfLinesPerSegment, _lineSizeBytes);
     WordsArray outChunk(_numberOfLinesPerSegment, _lineSizeBytes);
@@ -172,9 +175,9 @@ void FileSort::merge(int start, int mid, int end, FileHandle outFileHandle, File
         {
             if (outToTmp)
             {
-                leftTmpFileHandle = fileManager.openTmp(leftChunkIndex);
-                fileManager.seek(leftTmpFileHandle, 0);
-                fileManager.read(leftTmpFileHandle, leftChunk.data(), leftChunk.size());
+                FileHandle tmpFileHandle = fileManager.openTmp(leftChunkIndex);
+                fileManager.read(tmpFileHandle, leftChunk.data(), leftChunk.size());
+                fileManager.close(tmpFileHandle);
             }
             else
             {
@@ -189,9 +192,9 @@ void FileSort::merge(int start, int mid, int end, FileHandle outFileHandle, File
         {
             if (outToTmp)
             {
-                rightTmpFileHandle = fileManager.openTmp(rightChunkIndex);
-                fileManager.seek(rightTmpFileHandle, 0);
-                fileManager.read(rightTmpFileHandle, rightChunk.data(), rightChunk.size());
+                FileHandle tmpFileHandle = fileManager.openTmp(rightChunkIndex);
+                fileManager.read(tmpFileHandle, rightChunk.data(), rightChunk.size());
+                fileManager.close(tmpFileHandle);
             }
             else
             {
@@ -244,7 +247,8 @@ void FileSort::merge(int start, int mid, int end, FileHandle outFileHandle, File
             else
             {
                 FileHandle tmpFileHandle = fileManager.openTmp(chunkIndex);
-                fileManager.overwrite(tmpFileHandle, outChunk.data(), outChunk.size());
+                fileManager.write(tmpFileHandle, outChunk.data(), outChunk.size());
+                fileManager.close(tmpFileHandle);
             }
             ++chunkIndex;
         }

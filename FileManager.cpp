@@ -10,7 +10,8 @@ FileManager::FileManager(int maxFileHandles, const string &tmpFileName)
 
 FileManager::~FileManager()
 {
-    closeCached();
+    for (auto fileHandle : _fileHandlesCache)
+        close(fileHandle);
     for (unsigned int i = 0; i < _numberOfTmpFiles; ++i)
 #if defined(WINDOWS)
         DeleteFileA((_tmpFileName + to_string(i)).c_str());
@@ -26,16 +27,6 @@ FileHandle FileManager::open(const string &filePath, unsigned long fileAccess, b
     if (filePath.size() > MAX_FILENAME_PATH)
         throw Exception("File name size (" + to_string(filePath.size()) + ") too big, max characters allowed: " + to_string(MAX_FILENAME_PATH));
 
-    if (isTmp && _tmpFileHandles.count(filePath))
-        return (_tmpFileHandles[filePath]);
-
-    if (_tmpFileHandles.size() >= (size_t)_maxFileHandles)
-    {
-        auto it = _tmpFileHandles.begin();
-        close(it->second);
-        _tmpFileHandles.erase(it);
-    }
-
 #if defined(_WIN64)
     fileHandle = CreateFileA(filePath.c_str(), fileAccess, 0, NULL, exists ? OPEN_EXISTING : CREATE_ALWAYS, 0, NULL);
     if (fileHandle == INVALID_HANDLE_VALUE)
@@ -46,9 +37,7 @@ FileHandle FileManager::open(const string &filePath, unsigned long fileAccess, b
         throw Exception("Failed to open file: " + filePath);
 #endif
 
-    if (isTmp)
-        _tmpFileHandles[filePath] = fileHandle;
-    else
+    if (isTmp == false)
         _fileHandlesCache.insert(fileHandle);
 
     return (fileHandle);
@@ -64,17 +53,6 @@ FileHandle FileManager::openTmp(int tmpFileIndex)
     return (open(_tmpFileName + to_string(tmpFileIndex), RDWR, true, true));
 }
 
-void FileManager::closeTmp(int tmpFileIndex)
-{
-    string tmpFileName = _tmpFileName + to_string(tmpFileIndex);
-    if (_tmpFileHandles.count(tmpFileName))
-    {
-        FileHandle fileHandle = _tmpFileHandles[tmpFileName];
-        close(fileHandle);
-        _tmpFileHandles.erase(tmpFileName);
-    }
-}
-
 void FileManager::close(FileHandle fileHandle)
 {
 #if defined(_WIN64)
@@ -82,14 +60,6 @@ void FileManager::close(FileHandle fileHandle)
 #elif defined(__linux__)
     ::close(fileHandle);
 #endif
-}
-
-void FileManager::closeCached()
-{
-    for (auto fileHandle : _fileHandlesCache)
-        close(fileHandle);
-    for (auto fileHandle : _tmpFileHandles)
-        close(fileHandle.second);
 }
 
 void FileManager::read(FileHandle fileHandle, void *buffer, size_t bytesToRead)
@@ -118,12 +88,6 @@ void FileManager::write(FileHandle fileHandle, void *buffer, size_t bytesToWrite
         throw Exception("Something went wrong while writing the file.");
     if (bytesWritten != (int)bytesToWrite)
         throw Exception("Unexpected bytes written to file, expected to write: " + to_string(bytesToWrite) + ", but written " + to_string(bytesWritten));
-}
-
-void FileManager::overwrite(FileHandle fileHandle, void *buffer, size_t bytesToWrite)
-{
-    seek(fileHandle, 0);
-    write(fileHandle, buffer, bytesToWrite);
 }
 
 void FileManager::seek(FileHandle fileHandle, unsigned long offset)

@@ -35,7 +35,6 @@ class FileManager
     const string _tmpFileName;
     unsigned int _numberOfTmpFiles;
     unordered_set<FileHandle> _fileHandlesCache;
-    unordered_map<string, FileHandle> _tmpFileHandles;
 public:
     FileManager(int maxFileHandles, const string &tmpFileName);
     ~FileManager();
@@ -44,10 +43,8 @@ public:
     void closeTmp(int tmpFileIndex);
     FileHandle open(const string &filePath, unsigned long fileAccess, bool exists, bool isTmp);
     void close(FileHandle fileHandle);
-    void closeCached();
     void read(FileHandle fileHandle, void *buffer, size_t bytesToRead);
     void write(FileHandle fileHandle, void *buffer, size_t bytesToWrite);
-    void overwrite(FileHandle fileHandle, void *buffer, size_t bytesToWrite);
     void seek(FileHandle fileHandle, unsigned long offset);
 
 private:
