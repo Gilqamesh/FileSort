@@ -1,0 +1,2 @@
+no need to store newline in tmp files, this saves EOL extra bytes per word
+add keywords to functions: const, inline

@@ -24,6 +24,13 @@ public:
         ++i;
     }
 
+    void clear()
+    {
+        reset();
+        stops.clear();
+        elapsed_time.clear();
+    }
+
     void reset()
     {
         i = 0;

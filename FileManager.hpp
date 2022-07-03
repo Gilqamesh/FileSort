@@ -1,25 +1,29 @@
 #ifndef FILEMANAGER_HPP
-#define FILEMANAGER_HPP
+# define FILEMANAGER_HPP
 
-#include <unordered_map>
-#include <string>
-#include <stdexcept>
+# include <unordered_map>
+# include <unordered_set>
+# include <string>
+# include <stdexcept>
+# include "Platform.hpp"
 
-#if defined(_WIN64)
+# if defined(WINDOWS)
 
-#include <Windows.h>
+#  include <Windows.h>
+#  define READ GENERIC_READ
+#  define WRITE GENERIC_WRITE
+#  define RDWR (READ | WRITE)
+
 typedef HANDLE FileHandle;
-#define READ GENERIC_READ
-#define WRITE GENERIC_WRITE
-#define RDWR (READ | WRITE)
 
-#elif defined(__linux__)
+# elif defined(LINUX)
 
-#include <fcntl.h>
+#  include <fcntl.h>
+#  define READ O_RDONLY
+#  define WRITE O_WRONLY
+#  define RDWR O_RDWR
+
 typedef int FileHandle;
-#define READ O_RDONLY
-#define WRITE O_WRONLY
-#define RDWR O_RDWR
 
 #endif
 
@@ -30,20 +34,19 @@ class FileManager
     int _maxFileHandles;
     const string _tmpFileName;
     unsigned int _numberOfTmpFiles;
-    unordered_map<string, FileHandle> _fileHandles;
-    unordered_map<string, FileHandle> _fileHandlesPersist;
-
+    unordered_set<FileHandle> _fileHandlesCache;
+    unordered_map<string, FileHandle> _tmpFileHandles;
 public:
     FileManager(int maxFileHandles, const string &tmpFileName);
     ~FileManager();
-    FileHandle create(const string &filePath, unsigned long fileAccess, bool persist = false);
-    FileHandle open(const string &filePath, unsigned long fileAccess, bool persist = false);
+    FileHandle openTmp(int index);
     FileHandle createTmp();
-    FileHandle openTmp(unsigned long index);
+    void closeTmp(int index);
+    FileHandle open(const string &filePath, unsigned long fileAccess, bool exists, bool isTmp);
     void close(FileHandle fileHandle);
-    void closeAll();
-    void read(FileHandle fileHandle, void *buffer, size_t bytesToRead);
-    void write(FileHandle fileHandle, void *buffer, size_t bytesToWrite);
+    void closeCached();
+    void read(FileHandle fileHandle, void *buffer, int bytesToRead);
+    void write(FileHandle fileHandle, void *buffer, int bytesToWrite);
     void seek(FileHandle fileHandle, unsigned long offset);
 
 private:
@@ -51,7 +54,7 @@ private:
     {
     public:
         Exception(const string &msg);
-        ~Exception() throw();
+        ~Exception() noexcept;
     };
 };
 

@@ -1,128 +1,136 @@
 #include "FileSort.hpp"
 #include <vector>
-#include <memory>
 #include <algorithm>
 #include "Log.hpp"
-#include "FileChunk.hpp"
+#include "WordsArray.hpp"
 
 FileSort::FileSort(int maxFileSizeBytes, int numberOfLinesPerSegment, int lineSizeBytes)
     : _maxFileSizeBytes(maxFileSizeBytes),
       _numberOfLinesPerSegment(numberOfLinesPerSegment),
-      _lineSizeBytes(lineSizeBytes),
-      _fileManager(1000, "HtANm0ECUCjVFVSPRWT7_"),
-      _chunkA(_numberOfLinesPerSegment, _lineSizeBytes),
-      _chunkB(_numberOfLinesPerSegment, _lineSizeBytes),
-      _chunkC(_numberOfLinesPerSegment, _lineSizeBytes)
+      _lineSizeBytes(lineSizeBytes)
 {
+    srand((unsigned int)time(NULL));
 }
 
 void FileSort::Sort(const std::string &inFilePath, const std::string &outFilePath)
 {
-    _fileManager.closeAll();
-    // NOTE(david): file open happens here
-    if (inFilePath.size() > MAX_PATH)
-        throw Exception("Input file name size (" + to_string(inFilePath.size()) + ") too big, max characters allowed: " + to_string(MAX_PATH));
-    if (outFilePath.size() > MAX_PATH)
-        throw Exception("Output file name size (" + to_string(outFilePath.size()) + ") too big, max characters allowed: " + to_string(MAX_PATH));
-    HANDLE inFileHandle = _fileManager.open(inFilePath, READ, true);
-    HANDLE outFileHandle = _fileManager.create(outFilePath, RDWR, true);
+    shared_ptr<FileManager> fileManager = make_shared<FileManager>(MAX_FD * 3, to_string(rand()));
+    FileHandle inFileHandle = fileManager->open(inFilePath, READ, true, false);
+    FileHandle outFileHandle = fileManager->open(outFilePath, RDWR, false, false);
 
-    // NOTE(david): file size check happens here
+#if defined(WINDOWS)
     LARGE_INTEGER fileSize;
     if (!GetFileSizeEx(inFileHandle, &fileSize))
-        throw Exception("Failed to check size of the file: " + inFilePath);
+        throw Exception("Failed to check size of file: " + inFilePath);
     if (fileSize.QuadPart > _maxFileSizeBytes)
-        throw Exception("File: " + inFilePath + " exceeds the maximum(" + to_string(_maxFileSizeBytes) + "): " + to_string(fileSize.QuadPart));
+        throw Exception("File: " + inFilePath + " exceeds maximum(" + to_string(_maxFileSizeBytes) + "): " + to_string(fileSize.QuadPart));
+#elif defined(LINUX)
+    struct stat fileInfo;
+    if (stat(inFilePath.c_str(), &fileInfo) == -1)
+        throw Exception("Failed to check size of file: " + inFilePath);
+    if (fileInfo.st_size > _maxFileSizeBytes)
+        throw Exception("File: " + inFilePath + " exceeds maximum(" + to_string(_maxFileSizeBytes) + "): " + to_string(fileInfo.st_size));
+#endif
 
-    // NOTE(david): file chunks creation happens here
-    DWORD chunkSize = _numberOfLinesPerSegment * _lineSizeBytes;
-    int totalBytesRead = 0;
-    int numberOfChunks = (int)fileSize.QuadPart / chunkSize;
+    uint32 chunkSize = _numberOfLinesPerSegment * _lineSizeBytes;
+#if defined(WINDOWS)
+    int numberOfChunks = (int)(fileSize.QuadPart / chunkSize);
+#elif defined(LINUX)
+    int numberOfChunks = (int)(fileInfo.st_size / chunkSize);
+#endif
+    LOG("Number of chunks: " << numberOfChunks);
+
+    unique_ptr<WordsArray> chunk = make_unique<WordsArray>(_numberOfLinesPerSegment, _lineSizeBytes);
+    if (numberOfChunks == 1)
+    {
+        fileManager->read(inFileHandle, chunk->data(), chunk->size());
+        chunk->sort();
+
+        for (int i = 0; i < chunk->sizeWords(); ++i)
+        {
+            Word word = chunk->getWord(i);
+            fileManager->write(outFileHandle, word.data(), word.size());
+        }
+        return;
+    }
     for (int currentIteration = 0;
          currentIteration < numberOfChunks;
          ++currentIteration)
     {
-        _fileManager.read(inFileHandle, _chunkA.data(), _chunkA.size());
+        fileManager->read(inFileHandle, chunk->data(), chunk->size());
+        chunk->sort();
 
-        _chunkA.sort();
-        FileHandle tmpFileHandle = _fileManager.createTmp();
-
-        _fileManager.write(tmpFileHandle, _chunkA.data(), _chunkA.size());
-        _fileManager.write(outFileHandle, _chunkA.data(), _chunkA.size());
-        _fileManager.seek(tmpFileHandle, 0);
+        FileHandle tmpFileHandle = fileManager->createTmp();
+        fileManager->write(tmpFileHandle, chunk->data(), chunk->size());
+        fileManager->write(outFileHandle, chunk->data(), chunk->size());
+        fileManager->seek(tmpFileHandle, 0);
     }
+    chunk.release();
 
-    // NOTE(david): sorting into outfile happens here
-    // NOTE(david): Merge sort
-    mergeSort(numberOfChunks, outFileHandle);
+    sw.set();
+    mergeSort(numberOfChunks, outFileHandle, fileManager);
+    sw.set();
     sw.print();
 }
 
-FileSort::Exception::Exception(const string &msg)
-    : runtime_error(msg)
+void FileSort::mergeSort(int numberOfChunks, FileHandle outFileHandle, shared_ptr<FileManager> fileManager)
 {
+    mergeSortH(0, numberOfChunks, outFileHandle, fileManager);
 }
 
-FileSort::Exception::~Exception() throw()
-{
-}
-
-void FileSort::mergeSort(int numberOfChunks, FileHandle outFileHandle)
-{
-    mergeSort(0, numberOfChunks, outFileHandle);
-}
-
-void FileSort::mergeSort(int start, int end, FileHandle outFileHandle)
+// TODO(david): remove mergeCopy and do copy back and forth between outFile and tmp buffer (tmp files)
+void FileSort::mergeSortH(int start, int end, FileHandle outFileHandle, shared_ptr<FileManager> fileManager)
 {
     if (end - start < 2)
         return;
 
     int mid = (start + end) / 2;
-    mergeSort(start, mid, outFileHandle);
-    mergeSort(mid, end, outFileHandle);
-    mergeComb(start, mid, end, outFileHandle);
-    mergeCopy(start, end, outFileHandle);
+    mergeSortH(start, mid, outFileHandle, fileManager);
+    mergeSortH(mid, end, outFileHandle, fileManager);
+    mergeComb(start, mid, end, outFileHandle, fileManager);
+    mergeCopy(start, end, outFileHandle, fileManager);
 }
 
-// TODO(david): replace seek with close perhaps?
-void FileSort::mergeComb(int start, int mid, int end, FileHandle outFileHandle)
+void FileSort::mergeComb(int start, int mid, int end, FileHandle outFileHandle, shared_ptr<FileManager> fileManager)
 {
     int leftChunkIndex = start;
     int rightChunkIndex = mid;
     int leftWordIndex = 0;
     int rightWordIndex = 0;
-    FileHandle leftFileHandle = NULL;
-    FileHandle rightFileHandle = NULL;
-    string leftWord;
-    string rightWord;
-    _fileManager.seek(outFileHandle, start * _lineSizeBytes);
+    FileHandle leftFileHandle = 0;
+    FileHandle rightFileHandle = 0;
+    WordsArray leftChunk(_numberOfLinesPerSegment, _lineSizeBytes);
+    WordsArray rightChunk(_numberOfLinesPerSegment, _lineSizeBytes);
+    WordsArray outChunk(_numberOfLinesPerSegment, _lineSizeBytes);
+    Word leftWord;
+    Word rightWord;
+    fileManager->seek(outFileHandle, start * _lineSizeBytes);
 
-    sw.set();
     int numberOfChunks = end - start;
-    size_t numberOfWords = numberOfChunks * _numberOfLinesPerSegment;
-    for (size_t curWordIndex = 0; curWordIndex < numberOfWords; ++curWordIndex)
+    int numberOfWords = numberOfChunks * _numberOfLinesPerSegment;
+    int outChunkWordIndex = 0;
+    for (int curWordIndex = 0;
+         curWordIndex < numberOfWords;
+         ++curWordIndex)
     {
         if (leftChunkIndex < mid && leftWordIndex == 0)
         {
-            leftFileHandle = _fileManager.openTmp(leftChunkIndex);
-            _fileManager.read(leftFileHandle, _chunkA.data(), _chunkA.size());
-            _chunkA.sort();
-            _fileManager.seek(leftFileHandle, 0);
-            leftWord = _chunkA.getWord(leftWordIndex++);
+            leftFileHandle = fileManager->openTmp(leftChunkIndex);
+            fileManager->read(leftFileHandle, leftChunk.data(), leftChunk.size());
+            fileManager->seek(leftFileHandle, 0);
+            leftWord = leftChunk.getWord(leftWordIndex++);
         }
         if (rightChunkIndex < end && rightWordIndex == 0)
         {
-            rightFileHandle = _fileManager.openTmp(rightChunkIndex);
-            _fileManager.read(rightFileHandle, _chunkB.data(), _chunkB.size());
-            _chunkB.sort();
-            _fileManager.seek(rightFileHandle, 0);
-            rightWord = _chunkB.getWord(rightWordIndex++);
+            rightFileHandle = fileManager->openTmp(rightChunkIndex);
+            fileManager->read(rightFileHandle, rightChunk.data(), rightChunk.size());
+            fileManager->seek(rightFileHandle, 0);
+            rightWord = rightChunk.getWord(rightWordIndex++);
         }
-        
+
         if (leftChunkIndex < mid && (rightChunkIndex >= end || leftWord < rightWord))
         {
-            _chunkC.addWord(leftWord);
-            //_fileManager.write(outFileHandle, (void *)leftWord.data(), leftWord.size());
+            outChunk.addWord(leftWord, outChunkWordIndex++);
             if (leftWordIndex == _numberOfLinesPerSegment)
             {
                 ++leftChunkIndex;
@@ -130,13 +138,12 @@ void FileSort::mergeComb(int start, int mid, int end, FileHandle outFileHandle)
             }
             else
             {
-                leftWord = _chunkA.getWord(leftWordIndex++);
+                leftWord = leftChunk.getWord(leftWordIndex++);
             }
         }
         else
         {
-            _chunkC.addWord(rightWord);
-            //_fileManager.write(outFileHandle, (void *)rightWord.data(), rightWord.size());
+            outChunk.addWord(rightWord, outChunkWordIndex++);
             if (rightWordIndex == _numberOfLinesPerSegment)
             {
                 ++rightChunkIndex;
@@ -144,27 +151,36 @@ void FileSort::mergeComb(int start, int mid, int end, FileHandle outFileHandle)
             }
             else
             {
-                rightWord = _chunkB.getWord(rightWordIndex++);
+                rightWord = rightChunk.getWord(rightWordIndex++);
             }
         }
-        if (_chunkC.sizeWords() == _numberOfLinesPerSegment)
+
+        if (outChunk.sizeWords() == outChunkWordIndex)
         {
-            _fileManager.write(outFileHandle, _chunkC.data(), _chunkC.size());
-            _chunkC.reset();
+            outChunkWordIndex = 0;
+            fileManager->write(outFileHandle, outChunk.data(), outChunk.size());
         }
     }
-    sw.set();
-    sw.reset();
 }
 
-void FileSort::mergeCopy(int start, int end, FileHandle outFileHandle)
+void FileSort::mergeCopy(int start, int end, FileHandle outFileHandle, shared_ptr<FileManager> fileManager)
 {
-    _fileManager.seek(outFileHandle, start * _lineSizeBytes);
+    WordsArray chunk(_numberOfLinesPerSegment, _lineSizeBytes);
+    fileManager->seek(outFileHandle, start * _lineSizeBytes);
     for (int i = start; i < end; ++i)
     {
-        FileHandle chunkHandle = _fileManager.openTmp(i);
-        _fileManager.read(outFileHandle, _chunkA.data(), _chunkA.size());
-        _fileManager.write(chunkHandle, _chunkA.data(), _chunkA.size());
-        _fileManager.seek(chunkHandle, 0);
+        fileManager->read(outFileHandle, chunk.data(), chunk.size());
+        FileHandle chunkHandle = fileManager->openTmp(i);
+        fileManager->write(chunkHandle, chunk.data(), chunk.size());
+        fileManager->seek(chunkHandle, 0);
     }
+}
+
+FileSort::Exception::Exception(const string &msg)
+    : runtime_error(msg)
+{
+}
+
+FileSort::Exception::~Exception() noexcept
+{
 }

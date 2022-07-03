@@ -4,15 +4,10 @@
 #include <string>
 #include <exception>
 #include "FileManager.hpp"
-#include "FileChunk.hpp"
+#include "WordsArray.hpp"
+#include <memory>
 
 #include "stopwatch.hpp"
-
-#if defined(_WIN64)
-#include "Windows.h"
-#elif defined(__linux__)
-#include <unistd.h>
-#endif
 
 using namespace std;
 
@@ -28,29 +23,29 @@ class FileSort
     const int _maxFileSizeBytes;
     const int _numberOfLinesPerSegment;
     const int _lineSizeBytes;
-    FileManager _fileManager;
-    FileChunk _chunkA;
-    FileChunk _chunkB;
-    FileChunk _chunkC;
+
     stopwatch sw;
 
 public:
     FileSort(int maxFileSizeBytes, int numberOfLinesPerSegment, int lineSizeBytes);
     void Sort(const std::string &inFilePath, const std::string &outFilePath);
+    // TODO(david): support sort of multiple files into a single file
+    // this function signature doesnt work as it creates ambiguity with the above one
+    // void Sort(const string& outFilePath, const string& inFilePathArgs ...);
 
 private:
     class Exception : public runtime_error
     {
     public:
         Exception(const string &msg);
-        ~Exception() throw();
+        ~Exception() noexcept;
     };
 
     // File sorting algorithm
-    void mergeSort(int numberOfChunks, FileHandle outFileHandle);
-    void mergeSort(int start, int end, FileHandle outFileHandle);
-    void mergeComb(int start, int mid, int end, FileHandle outFileHandle);
-    void mergeCopy(int start, int end, FileHandle outFileHandle);
+    void mergeSort(int numberOfChunks, FileHandle outFileHandle, shared_ptr<FileManager> fileManager);
+    void mergeSortH(int start, int end, FileHandle outFileHandle, shared_ptr<FileManager> fileManager);
+    void mergeComb(int start, int mid, int end, FileHandle outFileHandle, shared_ptr<FileManager> fileManager);
+    void mergeCopy(int start, int end, FileHandle outFileHandle, shared_ptr<FileManager> fileManager);
 };
 
 #endif
