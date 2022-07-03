@@ -6,6 +6,12 @@
 
 #IncludeRegexTransform: 
 
+/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/FileManager.cpp
+FileManager.hpp
+/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/FileManager.hpp
+Log.hpp
+/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Log.hpp
+
 /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/FileManager.hpp
 unordered_map
 -
@@ -85,6 +91,12 @@ string
 -
 Word.hpp
 /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Word.hpp
+
+/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/main.cpp
+FileSort.hpp
+/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/FileSort.hpp
+Log.hpp
+/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Log.hpp
 
 /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/stopwatch.hpp
 ctime

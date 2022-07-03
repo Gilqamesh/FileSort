@@ -47,7 +47,6 @@ public:
     void closeCached();
     void read(FileHandle fileHandle, void *buffer, size_t bytesToRead);
     void write(FileHandle fileHandle, void *buffer, size_t bytesToWrite);
-    void overwrite(FileHandle fileHandle, void *buffer, size_t bytesToWrite);
     void seek(FileHandle fileHandle, unsigned long offset);
 
 private:

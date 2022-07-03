@@ -32,8 +32,7 @@ class FileSort
 public:
     FileSort(int maxFileSizeBytes, int numberOfLinesPerSegment, int lineSizeBytes);
     void Sort(const std::string &inFilePath, const std::string &outFilePath);
-    // TODO(david): support sort of multiple files into a single file
-    // void Sort(const vector<string>& inFilePathVec, const string& outFilePath);
+    void Sort(const vector<string>& inFilePathVec, const string& outFilePath);
 
 private:
     class Exception : public runtime_error
@@ -45,9 +44,9 @@ private:
 
     // File sorting algorithm
     void sort(int numberOfChunks, FileHandle outFileHandle, FileManager &fileManager);
-    void mergeSort(int start, int end, FileHandle outFileHandle, FileManager &fileManager, bool outToTmp);
-    bool mergeIsSorted(int mid, FileHandle outFileHandle, FileManager &fileManager, bool outToTmp);
-    void merge(int start, int mid, int end, FileHandle outFileHandle, FileManager &fileManager, bool outToTmp);
+    void mergeSort(int start, int end, FileHandle outFileHandle, FileManager &fileManager, bool outToTmp, mutex& outFileMutex);
+    bool mergeIsSorted(int mid, FileHandle outFileHandle, FileManager &fileManager, bool outToTmp, mutex& outFileMutex);
+    void merge(int start, int mid, int end, FileHandle outFileHandle, FileManager &fileManager, bool outToTmp, mutex& outFileMutex);
 };
 
 #endif

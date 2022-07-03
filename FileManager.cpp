@@ -120,12 +120,6 @@ void FileManager::write(FileHandle fileHandle, void *buffer, size_t bytesToWrite
         throw Exception("Unexpected bytes written to file, expected to write: " + to_string(bytesToWrite) + ", but written " + to_string(bytesWritten));
 }
 
-void FileManager::overwrite(FileHandle fileHandle, void *buffer, size_t bytesToWrite)
-{
-    seek(fileHandle, 0);
-    write(fileHandle, buffer, bytesToWrite);
-}
-
 void FileManager::seek(FileHandle fileHandle, unsigned long offset)
 {
 #if defined(WINDOWS)
