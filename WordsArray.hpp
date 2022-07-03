@@ -38,7 +38,6 @@ public:
     void *data();
     int size();
 
-    // iterator
     WordsArrayIterator begin();
     WordsArrayIterator end();
 };

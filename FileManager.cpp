@@ -59,14 +59,14 @@ FileHandle FileManager::createTmp()
     return (open(_tmpFileName + to_string(_numberOfTmpFiles++), RDWR, false, true));
 }
 
-FileHandle FileManager::openTmp(int index)
+FileHandle FileManager::openTmp(int tmpFileIndex)
 {
-    return (open(_tmpFileName + to_string(index), RDWR, true, true));
+    return (open(_tmpFileName + to_string(tmpFileIndex), RDWR, true, true));
 }
 
-void FileManager::closeTmp(int index)
+void FileManager::closeTmp(int tmpFileIndex)
 {
-    string tmpFileName = _tmpFileName + to_string(index);
+    string tmpFileName = _tmpFileName + to_string(tmpFileIndex);
     if (_tmpFileHandles.count(tmpFileName))
     {
         FileHandle fileHandle = _tmpFileHandles[tmpFileName];
@@ -92,7 +92,7 @@ void FileManager::closeCached()
         close(fileHandle.second);
 }
 
-void FileManager::read(FileHandle fileHandle, void *buffer, int bytesToRead)
+void FileManager::read(FileHandle fileHandle, void *buffer, size_t bytesToRead)
 {
 #if defined(WINDOWS)
     DWORD bytesRead;
@@ -106,7 +106,7 @@ void FileManager::read(FileHandle fileHandle, void *buffer, int bytesToRead)
         throw Exception("Unexpected bytes read from file, expected to read: " + to_string(bytesToRead) + ", but read: " + to_string(bytesRead));
 }
 
-void FileManager::write(FileHandle fileHandle, void *buffer, int bytesToWrite)
+void FileManager::write(FileHandle fileHandle, void *buffer, size_t bytesToWrite)
 {
 #if defined(WINDOWS)
     DWORD bytesWritten;
@@ -118,6 +118,12 @@ void FileManager::write(FileHandle fileHandle, void *buffer, int bytesToWrite)
         throw Exception("Something went wrong while writing the file.");
     if ((int)bytesWritten != bytesToWrite)
         throw Exception("Unexpected bytes written to file, expected to write: " + to_string(bytesToWrite) + ", but written " + to_string(bytesWritten));
+}
+
+void FileManager::overwrite(FileHandle fileHandle, void *buffer, size_t bytesToWrite)
+{
+    seek(fileHandle, 0);
+    write(fileHandle, buffer, bytesToWrite);
 }
 
 void FileManager::seek(FileHandle fileHandle, unsigned long offset)

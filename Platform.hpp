@@ -1,8 +1,6 @@
 #ifndef PLATFORM_HPP
 # define PLATFORM_HPP
 
-# include <cstdint>
-
 # if defined(_WIN64)
 #  define WINDOWS
 #  define MAX_FILENAME_PATH MAX_PATH
@@ -22,6 +20,15 @@
 
 # endif
 
+# include <cassert>
+# ifdef RELEASE
+#  define NDEBUG
+#  define ASSERT(x) assert(x)
+# else
+#  define ASSERT(x) assert(x)
+# endif
+
+# include <cstdint>
 typedef int8_t int8;
 typedef int16_t int16;
 typedef int32_t int32;

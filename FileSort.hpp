@@ -1,28 +1,31 @@
 #ifndef FILESORT_H
-#define FILESORT_H
+# define FILESORT_H
 
-#include <string>
-#include <exception>
-#include "FileManager.hpp"
-#include "WordsArray.hpp"
-#include <memory>
+# include <string>
+# include <exception>
+# include "FileManager.hpp"
+# include "WordsArray.hpp"
+# include <memory>
 
-#include "stopwatch.hpp"
+# include "stopwatch.hpp"
 
 using namespace std;
 
-#define Kilobytes(Value) ((Value)*1024LL)
-#define Megabytes(Value) (Kilobytes(Value) * 1024LL)
-#define Gigabytes(Value) (Megabytes(Value) * 1024LL)
-#define Terabytes(Value) (Gigabytes(Value) * 1024LL)
+# define Kilobytes(Value) ((Value)*1024LL)
+# define Megabytes(Value) (Kilobytes(Value) * 1024LL)
+# define Gigabytes(Value) (Megabytes(Value) * 1024LL)
+# define Terabytes(Value) (Gigabytes(Value) * 1024LL)
 
-#define ArrayCount(Array) (sizeof(Array) / sizeof((Array)[0]))
+# define ArrayCount(Array) (sizeof(Array) / sizeof((Array)[0]))
+
+# define MAX_TMP_FILE_SIZE Kilobytes(1)
 
 class FileSort
 {
     const int _maxFileSizeBytes;
     const int _numberOfLinesPerSegment;
     const int _lineSizeBytes;
+    const int _chunkSize;
 
     stopwatch sw;
 
@@ -30,8 +33,7 @@ public:
     FileSort(int maxFileSizeBytes, int numberOfLinesPerSegment, int lineSizeBytes);
     void Sort(const std::string &inFilePath, const std::string &outFilePath);
     // TODO(david): support sort of multiple files into a single file
-    // this function signature doesnt work as it creates ambiguity with the above one
-    // void Sort(const string& outFilePath, const string& inFilePathArgs ...);
+    // void Sort(const vector<string>& inFilePathVec, const string& outFilePath);
 
 private:
     class Exception : public runtime_error
@@ -42,10 +44,10 @@ private:
     };
 
     // File sorting algorithm
-    void mergeSort(int numberOfChunks, FileHandle outFileHandle, shared_ptr<FileManager> fileManager);
-    void mergeSortH(int start, int end, FileHandle outFileHandle, shared_ptr<FileManager> fileManager);
-    void mergeComb(int start, int mid, int end, FileHandle outFileHandle, shared_ptr<FileManager> fileManager);
-    void mergeCopy(int start, int end, FileHandle outFileHandle, shared_ptr<FileManager> fileManager);
+    void sort(int numberOfChunks, FileHandle outFileHandle, FileManager &fileManager);
+    void mergeSort(int start, int end, FileHandle outFileHandle, FileManager &fileManager, bool forwardMerge);
+    bool mergeIsSorted(int mid, FileHandle outFileHandle, FileManager &fileManager, bool forwardMerge);
+    void merge(int start, int mid, int end, FileHandle outFileHandle, FileManager &fileManager, bool forwardMerge);
 };
 
 #endif

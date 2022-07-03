@@ -39,14 +39,15 @@ class FileManager
 public:
     FileManager(int maxFileHandles, const string &tmpFileName);
     ~FileManager();
-    FileHandle openTmp(int index);
+    FileHandle openTmp(int tmpFileIndex);
     FileHandle createTmp();
-    void closeTmp(int index);
+    void closeTmp(int tmpFileIndex);
     FileHandle open(const string &filePath, unsigned long fileAccess, bool exists, bool isTmp);
     void close(FileHandle fileHandle);
     void closeCached();
-    void read(FileHandle fileHandle, void *buffer, int bytesToRead);
-    void write(FileHandle fileHandle, void *buffer, int bytesToWrite);
+    void read(FileHandle fileHandle, void *buffer, size_t bytesToRead);
+    void write(FileHandle fileHandle, void *buffer, size_t bytesToWrite);
+    void overwrite(FileHandle fileHandle, void *buffer, size_t bytesToWrite);
     void seek(FileHandle fileHandle, unsigned long offset);
 
 private:

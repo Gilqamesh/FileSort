@@ -5,7 +5,7 @@ int main()
 {
     try
     {
-        FileSort fileSort(Megabytes(100), 160, 7);
+        FileSort fileSort(Megabytes(100), 5, 7);
 
         string inFilePath("test.txt");
         fileSort.Sort(inFilePath, "out" + inFilePath);

@@ -7,6 +7,7 @@ project(SortFile)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# add -DRELEASE for release compilation
 if (MSVC)
     add_compile_options(-opt:ref -Oi -MT -FC -Zi -WX -W4 -nologo -EHa -wd4100 -wd4189 -wd4702 /std:c++14)
 else()
