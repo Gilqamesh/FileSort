@@ -1,8 +1,8 @@
 no need to store newline in tmp files, this saves EOL extra bytes per word
 more seperation of concern and clean up code
-fileManager's createTmp method should take in index of tmp file because of how vector<uin32> chunkCopyDirection is set up
-generate test files and maybe tester for them
 type bound checking for input
-cutoff for merge
+use insertion sort under cutoff optimization for merge
 sort method with optimal parameters for the input file (check newline for the lineSizeBytes)
-clean up includes and unused stuff
+linux better file handling (maybe close after reading a file)
+remove all platform layer stuff from FileSort and have platform specific files for implementations instead of using directives
+compression of lines..

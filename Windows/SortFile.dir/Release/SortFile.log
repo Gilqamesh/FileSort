@@ -1,9 +1,0 @@
-﻿  Building Custom Rule G:/code/XMCyber/CMakeLists.txt
-cl : command line warning D9035: option 'o' has been deprecated and will be removed in a future release
-  WordsArray.cpp
-  FileManager.cpp
-  FileSort.cpp
-  main.cpp
-  Word.cpp
-  Generating Code...
-  SortFile.vcxproj -> G:\code\XMCyber\Windows\SortFile.exe

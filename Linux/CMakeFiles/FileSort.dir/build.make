@@ -57,87 +57,87 @@ include CMakeFiles/FileSort.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/FileSort.dir/flags.make
 
-CMakeFiles/FileSort.dir/WordsArray.cpp.o: CMakeFiles/FileSort.dir/flags.make
-CMakeFiles/FileSort.dir/WordsArray.cpp.o: ../WordsArray.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/FileSort.dir/WordsArray.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FileSort.dir/WordsArray.cpp.o -c /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/WordsArray.cpp
+CMakeFiles/FileSort.dir/Sources/WordsArray.cpp.o: CMakeFiles/FileSort.dir/flags.make
+CMakeFiles/FileSort.dir/Sources/WordsArray.cpp.o: ../Sources/WordsArray.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/FileSort.dir/Sources/WordsArray.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FileSort.dir/Sources/WordsArray.cpp.o -c /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Sources/WordsArray.cpp
 
-CMakeFiles/FileSort.dir/WordsArray.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FileSort.dir/WordsArray.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/WordsArray.cpp > CMakeFiles/FileSort.dir/WordsArray.cpp.i
+CMakeFiles/FileSort.dir/Sources/WordsArray.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FileSort.dir/Sources/WordsArray.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Sources/WordsArray.cpp > CMakeFiles/FileSort.dir/Sources/WordsArray.cpp.i
 
-CMakeFiles/FileSort.dir/WordsArray.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FileSort.dir/WordsArray.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/WordsArray.cpp -o CMakeFiles/FileSort.dir/WordsArray.cpp.s
+CMakeFiles/FileSort.dir/Sources/WordsArray.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FileSort.dir/Sources/WordsArray.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Sources/WordsArray.cpp -o CMakeFiles/FileSort.dir/Sources/WordsArray.cpp.s
 
-CMakeFiles/FileSort.dir/FileManager.cpp.o: CMakeFiles/FileSort.dir/flags.make
-CMakeFiles/FileSort.dir/FileManager.cpp.o: ../FileManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FileSort.dir/FileManager.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FileSort.dir/FileManager.cpp.o -c /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/FileManager.cpp
+CMakeFiles/FileSort.dir/Sources/FileManager.cpp.o: CMakeFiles/FileSort.dir/flags.make
+CMakeFiles/FileSort.dir/Sources/FileManager.cpp.o: ../Sources/FileManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FileSort.dir/Sources/FileManager.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FileSort.dir/Sources/FileManager.cpp.o -c /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Sources/FileManager.cpp
 
-CMakeFiles/FileSort.dir/FileManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FileSort.dir/FileManager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/FileManager.cpp > CMakeFiles/FileSort.dir/FileManager.cpp.i
+CMakeFiles/FileSort.dir/Sources/FileManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FileSort.dir/Sources/FileManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Sources/FileManager.cpp > CMakeFiles/FileSort.dir/Sources/FileManager.cpp.i
 
-CMakeFiles/FileSort.dir/FileManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FileSort.dir/FileManager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/FileManager.cpp -o CMakeFiles/FileSort.dir/FileManager.cpp.s
+CMakeFiles/FileSort.dir/Sources/FileManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FileSort.dir/Sources/FileManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Sources/FileManager.cpp -o CMakeFiles/FileSort.dir/Sources/FileManager.cpp.s
 
-CMakeFiles/FileSort.dir/FileSort.cpp.o: CMakeFiles/FileSort.dir/flags.make
-CMakeFiles/FileSort.dir/FileSort.cpp.o: ../FileSort.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/FileSort.dir/FileSort.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FileSort.dir/FileSort.cpp.o -c /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/FileSort.cpp
+CMakeFiles/FileSort.dir/Sources/FileSort.cpp.o: CMakeFiles/FileSort.dir/flags.make
+CMakeFiles/FileSort.dir/Sources/FileSort.cpp.o: ../Sources/FileSort.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/FileSort.dir/Sources/FileSort.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FileSort.dir/Sources/FileSort.cpp.o -c /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Sources/FileSort.cpp
 
-CMakeFiles/FileSort.dir/FileSort.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FileSort.dir/FileSort.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/FileSort.cpp > CMakeFiles/FileSort.dir/FileSort.cpp.i
+CMakeFiles/FileSort.dir/Sources/FileSort.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FileSort.dir/Sources/FileSort.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Sources/FileSort.cpp > CMakeFiles/FileSort.dir/Sources/FileSort.cpp.i
 
-CMakeFiles/FileSort.dir/FileSort.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FileSort.dir/FileSort.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/FileSort.cpp -o CMakeFiles/FileSort.dir/FileSort.cpp.s
+CMakeFiles/FileSort.dir/Sources/FileSort.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FileSort.dir/Sources/FileSort.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Sources/FileSort.cpp -o CMakeFiles/FileSort.dir/Sources/FileSort.cpp.s
 
-CMakeFiles/FileSort.dir/main.cpp.o: CMakeFiles/FileSort.dir/flags.make
-CMakeFiles/FileSort.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/FileSort.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FileSort.dir/main.cpp.o -c /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/main.cpp
+CMakeFiles/FileSort.dir/Sources/main.cpp.o: CMakeFiles/FileSort.dir/flags.make
+CMakeFiles/FileSort.dir/Sources/main.cpp.o: ../Sources/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/FileSort.dir/Sources/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FileSort.dir/Sources/main.cpp.o -c /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Sources/main.cpp
 
-CMakeFiles/FileSort.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FileSort.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/main.cpp > CMakeFiles/FileSort.dir/main.cpp.i
+CMakeFiles/FileSort.dir/Sources/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FileSort.dir/Sources/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Sources/main.cpp > CMakeFiles/FileSort.dir/Sources/main.cpp.i
 
-CMakeFiles/FileSort.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FileSort.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/main.cpp -o CMakeFiles/FileSort.dir/main.cpp.s
+CMakeFiles/FileSort.dir/Sources/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FileSort.dir/Sources/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Sources/main.cpp -o CMakeFiles/FileSort.dir/Sources/main.cpp.s
 
-CMakeFiles/FileSort.dir/Word.cpp.o: CMakeFiles/FileSort.dir/flags.make
-CMakeFiles/FileSort.dir/Word.cpp.o: ../Word.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/FileSort.dir/Word.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FileSort.dir/Word.cpp.o -c /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Word.cpp
+CMakeFiles/FileSort.dir/Sources/Word.cpp.o: CMakeFiles/FileSort.dir/flags.make
+CMakeFiles/FileSort.dir/Sources/Word.cpp.o: ../Sources/Word.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/FileSort.dir/Sources/Word.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FileSort.dir/Sources/Word.cpp.o -c /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Sources/Word.cpp
 
-CMakeFiles/FileSort.dir/Word.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FileSort.dir/Word.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Word.cpp > CMakeFiles/FileSort.dir/Word.cpp.i
+CMakeFiles/FileSort.dir/Sources/Word.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FileSort.dir/Sources/Word.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Sources/Word.cpp > CMakeFiles/FileSort.dir/Sources/Word.cpp.i
 
-CMakeFiles/FileSort.dir/Word.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FileSort.dir/Word.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Word.cpp -o CMakeFiles/FileSort.dir/Word.cpp.s
+CMakeFiles/FileSort.dir/Sources/Word.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FileSort.dir/Sources/Word.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Sources/Word.cpp -o CMakeFiles/FileSort.dir/Sources/Word.cpp.s
 
 # Object files for target FileSort
 FileSort_OBJECTS = \
-"CMakeFiles/FileSort.dir/WordsArray.cpp.o" \
-"CMakeFiles/FileSort.dir/FileManager.cpp.o" \
-"CMakeFiles/FileSort.dir/FileSort.cpp.o" \
-"CMakeFiles/FileSort.dir/main.cpp.o" \
-"CMakeFiles/FileSort.dir/Word.cpp.o"
+"CMakeFiles/FileSort.dir/Sources/WordsArray.cpp.o" \
+"CMakeFiles/FileSort.dir/Sources/FileManager.cpp.o" \
+"CMakeFiles/FileSort.dir/Sources/FileSort.cpp.o" \
+"CMakeFiles/FileSort.dir/Sources/main.cpp.o" \
+"CMakeFiles/FileSort.dir/Sources/Word.cpp.o"
 
 # External object files for target FileSort
 FileSort_EXTERNAL_OBJECTS =
 
-FileSort: CMakeFiles/FileSort.dir/WordsArray.cpp.o
-FileSort: CMakeFiles/FileSort.dir/FileManager.cpp.o
-FileSort: CMakeFiles/FileSort.dir/FileSort.cpp.o
-FileSort: CMakeFiles/FileSort.dir/main.cpp.o
-FileSort: CMakeFiles/FileSort.dir/Word.cpp.o
+FileSort: CMakeFiles/FileSort.dir/Sources/WordsArray.cpp.o
+FileSort: CMakeFiles/FileSort.dir/Sources/FileManager.cpp.o
+FileSort: CMakeFiles/FileSort.dir/Sources/FileSort.cpp.o
+FileSort: CMakeFiles/FileSort.dir/Sources/main.cpp.o
+FileSort: CMakeFiles/FileSort.dir/Sources/Word.cpp.o
 FileSort: CMakeFiles/FileSort.dir/build.make
 FileSort: CMakeFiles/FileSort.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable FileSort"

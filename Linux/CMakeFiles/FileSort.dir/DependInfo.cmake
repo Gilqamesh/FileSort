@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/FileManager.cpp" "/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles/FileSort.dir/FileManager.cpp.o"
-  "/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/FileSort.cpp" "/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles/FileSort.dir/FileSort.cpp.o"
-  "/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Word.cpp" "/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles/FileSort.dir/Word.cpp.o"
-  "/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/WordsArray.cpp" "/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles/FileSort.dir/WordsArray.cpp.o"
-  "/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/main.cpp" "/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles/FileSort.dir/main.cpp.o"
+  "/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Sources/FileManager.cpp" "/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles/FileSort.dir/Sources/FileManager.cpp.o"
+  "/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Sources/FileSort.cpp" "/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles/FileSort.dir/Sources/FileSort.cpp.o"
+  "/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Sources/Word.cpp" "/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles/FileSort.dir/Sources/Word.cpp.o"
+  "/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Sources/WordsArray.cpp" "/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles/FileSort.dir/Sources/WordsArray.cpp.o"
+  "/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Sources/main.cpp" "/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles/FileSort.dir/Sources/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
