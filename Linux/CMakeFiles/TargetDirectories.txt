@@ -1,3 +1,0 @@
-/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles/edit_cache.dir
-/mnt/c/Users/Gilqamesh/Desktop/Projects/Competitions/code/XMCyber/Linux/CMakeFiles/FileSort.dir

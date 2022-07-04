@@ -1,3 +1,0 @@
-G:/code/XMCyber/Windows/CMakeFiles/FileSort.dir
-G:/code/XMCyber/Windows/CMakeFiles/ALL_BUILD.dir
-G:/code/XMCyber/Windows/CMakeFiles/ZERO_CHECK.dir
